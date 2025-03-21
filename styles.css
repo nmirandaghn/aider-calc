@@ -116,6 +116,10 @@ body.dark-theme {
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
+.dark-theme .calculator-title {
+  color: #ffffff;
+}
+
 .dark-theme .display {
   background-color: #3d3d3d;
   border-color: #4d4d4d;
