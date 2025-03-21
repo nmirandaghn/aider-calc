@@ -64,3 +64,10 @@ button:hover {
 .memory:hover {
     background-color: #45a049;
 }
+
+.memory-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 10px;
+}

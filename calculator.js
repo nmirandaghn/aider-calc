@@ -18,6 +18,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Subtract from memory
+    function memorySubtract() {
+        const currentValue = parseFloat(display.value);
+        if (!isNaN(currentValue)) {
+            memoryValue = (memoryValue || 0) - currentValue;
+        }
+    }
+
+    // Store current value in memory
+    function memoryStore() {
+        const currentValue = parseFloat(display.value);
+        if (!isNaN(currentValue)) {
+            memoryValue = currentValue;
+        }
+    }
+
     // Retrieve memory value
     function memoryRead() {
         if (memoryValue !== null) {
@@ -67,4 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.memoryRead = memoryRead;
     window.memoryAdd = memoryAdd;
     window.memoryClear = memoryClear;
+    window.memorySubtract = memorySubtract;
+    window.memoryStore = memoryStore;
 });
