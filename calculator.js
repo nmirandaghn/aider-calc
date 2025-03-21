@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     const display = document.getElementById('display');
+    const body = document.body;
+
+    // Theme toggle function
+    function toggleTheme() {
+        body.classList.toggle('dark-theme');
+    }
     let memoryValue = null;
     let isResetting = false;
 
@@ -77,4 +83,5 @@ document.addEventListener('DOMContentLoaded', function() {
     window.memoryAdd = memoryAdd;
     window.memoryClear = memoryClear;
     window.memorySubtract = memorySubtract;
+    window.toggleTheme = toggleTheme;
 });

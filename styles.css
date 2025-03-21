@@ -67,8 +67,53 @@ button:hover {
 
 .memory-buttons {
   display: grid;
-
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-bottom: 10px;
+}
+
+/* Dark theme styles */
+body.dark-theme {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dark-theme .calculator {
+  background-color: #2d2d2d;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .display {
+  background-color: #3d3d3d;
+  border-color: #4d4d4d;
+  color: #ffffff;
+}
+
+.dark-theme button {
+  background-color: #4d4d4d;
+  color: #ffffff;
+}
+
+.dark-theme button:hover {
+  background-color: #5d5d5d;
+}
+
+.dark-theme .operator {
+  background-color: #ff9500;
+}
+
+.dark-theme .memory {
+  background-color: #4CAF50;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #666;
+  color: white;
+  cursor: pointer;
 }
