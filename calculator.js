@@ -26,13 +26,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Store current value in memory
-    function memoryStore() {
-        const currentValue = parseFloat(display.value);
-        if (!isNaN(currentValue)) {
-            memoryValue = currentValue;
-        }
-    }
 
     // Retrieve memory value
     function memoryRead() {
@@ -84,5 +77,4 @@ document.addEventListener('DOMContentLoaded', function() {
     window.memoryAdd = memoryAdd;
     window.memoryClear = memoryClear;
     window.memorySubtract = memorySubtract;
-    window.memoryStore = memoryStore;
 });
