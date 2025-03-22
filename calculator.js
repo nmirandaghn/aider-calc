@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     let memoryValue = null;
     let isResetting = false;
+    let justCalculated = false;
 
     // Reset calculator completely
     function resetCalculator() {
@@ -46,7 +47,12 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function appendNumber(number) {
-        display.value += number;
+        if (justCalculated || display.value === 'Error') {
+            display.value = number;
+            justCalculated = false;
+        } else {
+            display.value += number;
+        }
     }
 
     function appendOperator(operator) {
@@ -65,8 +71,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function calculate() {
         try {
-            const result = eval(display.value.replace(/×/g, '*'));
+            // Replace percentage symbol with /100 and handle multiplication
+            let expression = display.value.replace(/×/g, '*');
+            expression = expression.replace(/(\d+(\.\d+)?)%/g, '($1/100)*');
+        
+            const result = eval(expression);
             display.value = result.toString();
+            justCalculated = true;
         } catch (error) {
             display.value = 'Error';
         }
