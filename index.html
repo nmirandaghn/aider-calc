@@ -16,8 +16,6 @@
     />
   </head>
   <body>
-    <button class="toggle-history" onclick="toggleHistory()">📜 History</button>
-    
     <div class="app-container">
       <div class="calculator-container">
       <div class="calculator">
@@ -89,12 +87,15 @@
       </div>
       </div>
       
-      <div class="history-panel">
-        <div class="history-header">
-          <h3 class="history-title">Calculation History</h3>
-          <button class="clear-history" onclick="clearHistory()">Clear</button>
+      <div class="history-container">
+        <button class="toggle-history" onclick="toggleHistory()">📜 History</button>
+        <div class="history-panel">
+          <div class="history-header">
+            <h3 class="history-title">Calculation History</h3>
+            <button class="clear-history" onclick="clearHistory()">Clear History</button>
+          </div>
+          <div id="history-entries"></div>
         </div>
-        <div id="history-entries"></div>
       </div>
     </div>
 
