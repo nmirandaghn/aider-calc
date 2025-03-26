@@ -378,6 +378,43 @@ body.solarized-theme {
   padding: 8px 0;
   border-bottom: 1px solid #eee;
   font-family: monospace;
+  margin-bottom: 8px;
+}
+
+.history-operation {
+  font-weight: bold;
+  margin-bottom: 2px;
+}
+
+.history-result {
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.history-time {
+  color: #999;
+  font-size: 0.8em;
+}
+
+/* Theme-specific history styles */
+.dark-theme .history-result {
+  color: #ccc;
+}
+
+.dark-theme .history-time {
+  color: #aaa;
+}
+
+.material-theme .history-operation {
+  color: #1976d2;
+}
+
+.monokai-theme .history-operation {
+  color: #f92672;
+}
+
+.solarized-theme .history-operation {
+  color: #268bd2;
 }
 
 .toggle-history {

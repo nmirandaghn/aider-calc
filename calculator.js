@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = eval(expression);
             display.value = result.toString();
             justCalculated = true;
-            addToHistory(display.value, result);
+            addToHistory(expression.replace(/\*/g, '×'), result); // Show × instead of * for multiplication
         } catch (error) {
             display.value = 'Error';
         }
@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.memorySubtract = memorySubtract;
     function addToHistory(expression, result) {
         calculationHistory.push({
-            expression: expression,
+            operation: expression,  // Store the full operation
             result: result,
             timestamp: new Date().toLocaleTimeString()
         });
@@ -167,8 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const historyEntries = document.getElementById('history-entries');
         historyEntries.innerHTML = calculationHistory.map(entry => 
             `<div class="history-entry">
-                <div>${entry.expression} = ${entry.result}</div>
-                <small>${entry.timestamp}</small>
+                <div class="history-operation">${entry.operation}</div>
+                <div class="history-result">= ${entry.result}</div>
+                <small class="history-time">${entry.timestamp}</small>
             </div>`
         ).reverse().join('');
     }
