@@ -382,8 +382,58 @@ body.nightowl-theme {
 
 .history-title {
   font-size: 1rem;
-  color: #333;
   margin: 0;
+  font-weight: bold;
+}
+
+/* Theme-specific history title colors with good contrast */
+.light-theme .history-title {
+  color: #333;
+}
+
+.dark-theme .history-title {
+  color: #ffffff;
+}
+
+.material-theme .history-title {
+  color: #0d47a1; /* Darker blue for better contrast */
+}
+
+.monokai-theme .history-title {
+  color: #f92672; /* Bright pink for contrast */
+}
+
+.solarized-theme .history-title {
+  color: #268bd2; /* Blue that contrasts well with light background */
+}
+
+.nightowl-theme .history-title {
+  color: #7fdbca; /* Teal that stands out on dark background */
+}
+
+/* Ensure contrast in all theme panels */
+.light-theme .history-panel .history-title {
+  color: #333;
+}
+
+.dark-theme .history-panel .history-title {
+  color: #333;
+}
+
+.material-theme .history-panel .history-title {
+  color: #0d47a1;
+}
+
+.monokai-theme .history-panel .history-title {
+  color: #f92672;
+}
+
+.solarized-theme .history-panel .history-title {
+  color: #268bd2;
+}
+
+.nightowl-theme .history-panel .history-title {
+  color: #7fdbca;
 }
 
 .clear-history {
