@@ -66,14 +66,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function deleteLast() {
-        display.value = display.value.slice(0, -1);
+        if (justCalculated || display.value === 'Error') {
+            display.value = '';
+            justCalculated = false;
+        } else {
+            display.value = display.value.slice(0, -1);
+        }
     }
 
     function calculate() {
         try {
             // Replace percentage symbol with /100 and handle multiplication
             let expression = display.value.replace(/×/g, '*');
-            expression = expression.replace(/(\d+(\.\d+)?)%/g, '($1/100)*');
+            expression = expression.replace(/([\d.]+)%/g, '($1/100)');
         
             const result = eval(expression);
             display.value = result.toString();
