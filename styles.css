@@ -200,6 +200,88 @@ body.nightowl-theme {
   color: #d6deeb;
 }
 
+/* Holographic Theme */
+body.holographic-theme {
+  background-color: #0a0a1a;
+  color: #00f7ff;
+}
+
+.holographic-theme .calculator {
+  background-color: rgba(0, 10, 20, 0.7);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+.holographic-theme .display {
+  background-color: rgba(0, 20, 40, 0.8);
+  border: 1px solid rgba(0, 247, 255, 0.5);
+  color: #00f7ff;
+  text-shadow: 0 0 5px rgba(0, 247, 255, 0.7);
+}
+
+.holographic-theme button {
+  background-color: rgba(0, 30, 60, 0.7);
+  color: #00f7ff;
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  text-shadow: 0 0 5px rgba(0, 247, 255, 0.5);
+}
+
+.holographic-theme button:hover {
+  background-color: rgba(0, 50, 100, 0.7);
+  box-shadow: 0 0 10px rgba(0, 247, 255, 0.3);
+}
+
+.holographic-theme .operator {
+  background-color: rgba(0, 150, 255, 0.7);
+  color: #001122;
+  text-shadow: none;
+}
+
+.holographic-theme .operator:hover {
+  background-color: rgba(0, 180, 255, 0.7);
+}
+
+.holographic-theme .memory {
+  background-color: rgba(150, 0, 255, 0.7);
+  color: #001122;
+  text-shadow: none;
+}
+
+.holographic-theme .memory:hover {
+  background-color: rgba(180, 0, 255, 0.7);
+}
+
+.holographic-theme .calculator-title {
+  color: #00f7ff;
+  text-shadow: 0 0 10px rgba(0, 247, 255, 0.7);
+}
+
+.holographic-theme .history-panel {
+  background-color: rgba(0, 10, 20, 0.7);
+  color: #00f7ff;
+  border: 1px solid rgba(0, 247, 255, 0.3);
+}
+
+.holographic-theme .history-operation {
+  color: #00f7ff;
+  text-shadow: 0 0 5px rgba(0, 247, 255, 0.5);
+}
+
+.holographic-theme .history-result {
+  color: #00aaff;
+}
+
+.holographic-theme .clear-history {
+  background-color: rgba(0, 20, 40, 0.8);
+  color: #00f7ff;
+  border: 1px solid rgba(0, 247, 255, 0.3);
+}
+
+.holographic-theme .clear-history:hover {
+  background-color: rgba(0, 30, 60, 0.8);
+}
+
 .nightowl-theme .calculator {
   background-color: #1d3b53;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);

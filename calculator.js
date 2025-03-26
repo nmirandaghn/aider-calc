@@ -9,7 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'material', name: 'Material', color: '#f5f5f5' },
         { id: 'monokai', name: 'Monokai', color: '#272822' },
         { id: 'solarized', name: 'Solarized', color: '#fdf6e3' },
-        { id: 'nightowl', name: 'Night Owl', color: '#011627' }
+        { id: 'nightowl', name: 'Night Owl', color: '#011627' },
+        { id: 'holographic', name: 'Holographic', color: '#0a0a1a' }
     ];
 
     function setTheme(themeId) {
@@ -35,7 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'material': '🎨',
             'monokai': '💻',
             'solarized': '🌞',
-            'nightowl': '🦉'
+            'nightowl': '🦉',
+            'holographic': '👽'
         };
         themeBtn.innerHTML = `
             <span class="theme-icon" style="background:${currentTheme.color}"></span>
