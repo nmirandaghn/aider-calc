@@ -16,7 +16,10 @@
     />
   </head>
   <body>
-    <div class="calculator-container">
+    <button class="toggle-history" onclick="toggleHistory()">📜 History</button>
+    
+    <div class="app-container">
+      <div class="calculator-container">
       <div class="calculator">
         <div class="calculator-header">
           <h1 class="calculator-title">
@@ -83,6 +86,12 @@
           <button onclick="appendNumber('.')">.</button>
           <button class="operator" onclick="calculate()">=</button>
         </div>
+      </div>
+      </div>
+      
+      <div class="history-panel">
+        <h3 class="history-title">Calculation History</h3>
+        <div id="history-entries"></div>
       </div>
     </div>
 

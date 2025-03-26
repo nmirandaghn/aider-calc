@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme on load
     initTheme();
     let memoryValue = null;
+    let calculationHistory = [];
     let isResetting = false;
     let justCalculated = false;
 
@@ -126,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const result = eval(expression);
             display.value = result.toString();
             justCalculated = true;
+            addToHistory(display.value, result);
         } catch (error) {
             display.value = 'Error';
         }
@@ -142,5 +144,35 @@ document.addEventListener('DOMContentLoaded', function() {
     window.memoryAdd = memoryAdd;
     window.memoryClear = memoryClear;
     window.memorySubtract = memorySubtract;
+    function addToHistory(expression, result) {
+        calculationHistory.push({
+            expression: expression,
+            result: result,
+            timestamp: new Date().toLocaleTimeString()
+        });
+        if (document.querySelector('.history-panel').classList.contains('visible')) {
+            updateHistoryDisplay();
+        }
+    }
+
+    function toggleHistory() {
+        const historyPanel = document.querySelector('.history-panel');
+        historyPanel.classList.toggle('visible');
+        if (historyPanel.classList.contains('visible')) {
+            updateHistoryDisplay();
+        }
+    }
+
+    function updateHistoryDisplay() {
+        const historyEntries = document.getElementById('history-entries');
+        historyEntries.innerHTML = calculationHistory.map(entry => 
+            `<div class="history-entry">
+                <div>${entry.expression} = ${entry.result}</div>
+                <small>${entry.timestamp}</small>
+            </div>`
+        ).reverse().join('');
+    }
+
     window.setTheme = setTheme;
+    window.toggleHistory = toggleHistory;
 });
