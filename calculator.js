@@ -174,5 +174,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.setTheme = setTheme;
+    function clearHistory() {
+        calculationHistory = [];
+        updateHistoryDisplay();
+    }
+
     window.toggleHistory = toggleHistory;
+    window.clearHistory = clearHistory;
 });
