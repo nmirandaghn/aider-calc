@@ -416,7 +416,7 @@ body.solarized-theme {
   width: 300px;
   margin-left: 20px;
   min-height: 650px;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .toggle-history {
@@ -444,7 +444,7 @@ body.solarized-theme {
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: none;
-  height: 500px;
+  flex: 1;
   overflow-y: auto;
   box-sizing: border-box;
 }
