@@ -194,6 +194,76 @@ body.solarized-theme {
   color: #657b83;
 }
 
+/* Night Owl Theme */
+body.nightowl-theme {
+  background-color: #011627;
+  color: #d6deeb;
+}
+
+.nightowl-theme .calculator {
+  background-color: #1d3b53;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.nightowl-theme .display {
+  background-color: #0c2132;
+  border-color: #1d3b53;
+  color: #d6deeb;
+}
+
+.nightowl-theme button {
+  background-color: #1d3b53;
+  color: #82aaff;
+}
+
+.nightowl-theme button:hover {
+  background-color: #2a4a6a;
+}
+
+.nightowl-theme .operator {
+  background-color: #7fdbca;
+  color: #011627;
+}
+
+.nightowl-theme .operator:hover {
+  background-color: #5cc5b4;
+}
+
+.nightowl-theme .memory {
+  background-color: #c792ea;
+  color: #011627;
+}
+
+.nightowl-theme .memory:hover {
+  background-color: #b579e0;
+}
+
+.nightowl-theme .calculator-title {
+  color: #7fdbca;
+}
+
+.nightowl-theme .history-panel {
+  background-color: #1d3b53;
+  color: #d6deeb;
+}
+
+.nightowl-theme .history-operation {
+  color: #7fdbca;
+}
+
+.nightowl-theme .history-result {
+  color: #82aaff;
+}
+
+.nightowl-theme .clear-history {
+  background-color: #0c2132;
+  color: #d6deeb;
+}
+
+.nightowl-theme .clear-history:hover {
+  background-color: #1d3b53;
+}
+
 /* Calculator styles for each theme */
 .light-theme .calculator {
   background-color: #fff;
