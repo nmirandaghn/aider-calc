@@ -275,17 +275,16 @@ body.solarized-theme {
   max-width: 900px;
   margin: 20px auto;
   padding: 0 20px;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
+  gap: 20px;
 }
 
 .calculator-container {
-  max-width: 500px;
-  width: 100%;
+  width: 500px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  min-height: 650px;
 }
 
 .history-panel {
@@ -297,7 +296,6 @@ body.solarized-theme {
   display: none;
   max-height: 600px;
   overflow-y: auto;
-  margin-top: 20px;
   align-self: flex-start;
 }
 
@@ -417,6 +415,8 @@ body.solarized-theme {
   flex-direction: column;
   width: 300px;
   margin-left: 20px;
+  min-height: 650px;
+  justify-content: flex-start;
 }
 
 .toggle-history {
