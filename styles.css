@@ -113,42 +113,165 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Dark theme styles */
+/* Theme Definitions */
+/* Light Theme (default) */
+body.light-theme {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Dark Theme */
 body.dark-theme {
   background-color: #1a1a1a;
   color: #ffffff;
 }
 
+/* Material Theme */
+body.material-theme {
+  background-color: #f5f7fa;
+  color: #263238;
+}
+
+.material-theme .calculator {
+  background-color: #ffffff;
+  box-shadow: 
+    0 2px 2px 0 rgba(0,0,0,0.14),
+    0 3px 1px -2px rgba(0,0,0,0.12),
+    0 1px 5px 0 rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.material-theme .display {
+  background-color: #eceff1;
+  border-color: #cfd8dc;
+  color: #37474f;
+  font-weight: 500;
+}
+
+.material-theme button {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  transition: all 0.2s ease;
+}
+
+.material-theme button:hover {
+  background-color: #bbdefb;
+}
+
+.material-theme .operator {
+  background-color: #1976d2;
+  color: white;
+}
+
+.material-theme .operator:hover {
+  background-color: #1565c0;
+}
+
+.material-theme .memory {
+  background-color: #4caf50;
+  color: white;
+}
+
+.material-theme .memory:hover {
+  background-color: #43a047;
+}
+
+.material-theme .calculator-title {
+  color: #1976d2;
+}
+
+.material-theme .theme-dropdown {
+  box-shadow: 
+    0 2px 4px -1px rgba(0,0,0,0.2),
+    0 4px 5px 0 rgba(0,0,0,0.14),
+    0 1px 10px 0 rgba(0,0,0,0.12);
+}
+
+/* Monokai Theme */
+body.monokai-theme {
+  background-color: #272822;
+  color: #f8f8f2;
+}
+
+/* Solarized Theme */
+body.solarized-theme {
+  background-color: #fdf6e3;
+  color: #657b83;
+}
+
+/* Calculator styles for each theme */
+.light-theme .calculator {
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
 .dark-theme .calculator {
   background-color: #2d2d2d;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
 }
 
-.dark-theme .calculator-title {
-  color: #ffffff;
+.material-theme .calculator {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.dark-theme .display {
+.monokai-theme .calculator {
+  background-color: #383830;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.solarized-theme .calculator {
+  background-color: #eee8d5;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Theme selector styles */
+.theme-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.theme-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.theme-selector:hover .theme-dropdown {
+  display: block;
+}
+
+.theme-option {
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-option:hover {
+  background-color: #f1f1f1;
+}
+
+.theme-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+/* Dark theme dropdown styles */
+.dark-theme .theme-dropdown {
+  background-color: #2d2d2d;
+  color: white;
+}
+
+.dark-theme .theme-option:hover {
   background-color: #3d3d3d;
-  border-color: #4d4d4d;
-  color: #ffffff;
-}
-
-.dark-theme button {
-  background-color: #4d4d4d;
-  color: #ffffff;
-}
-
-.dark-theme button:hover {
-  background-color: #5d5d5d;
-}
-
-.dark-theme .operator {
-  background-color: #ff9500;
-}
-
-.dark-theme .memory {
-  background-color: #4caf50;
 }
 
 .calculator-container {

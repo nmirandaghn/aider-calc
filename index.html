@@ -22,7 +22,35 @@
           <h1 class="calculator-title">
             <i class="fas fa-calculator"></i> Calculator
           </h1>
-          <button class="theme-toggle" onclick="toggleTheme()">🌙/☀️</button>
+          <div class="theme-selector">
+            <button class="theme-btn">
+              <span class="theme-icon"></span>
+              Theme
+              <i class="fas fa-caret-down"></i>
+            </button>
+            <div class="theme-dropdown">
+              <div class="theme-option" onclick="setTheme('light')">
+                <span class="theme-icon" style="background:#f4f4f4"></span>
+                ☀️ Light
+              </div>
+              <div class="theme-option" onclick="setTheme('dark')">
+                <span class="theme-icon" style="background:#1a1a1a"></span>
+                🌙 Dark
+              </div>
+              <div class="theme-option" onclick="setTheme('material')">
+                <span class="theme-icon" style="background:#f5f5f5"></span>
+                🎨 Material
+              </div>
+              <div class="theme-option" onclick="setTheme('monokai')">
+                <span class="theme-icon" style="background:#272822"></span>
+                💻 Monokai
+              </div>
+              <div class="theme-option" onclick="setTheme('solarized')">
+                <span class="theme-icon" style="background:#fdf6e3"></span>
+                🌞 Solarized
+              </div>
+            </div>
+          </div>
         </div>
         <input type="text" class="display" id="display" disabled />
         <div class="memory-buttons">

@@ -2,10 +2,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const display = document.getElementById('display');
     const body = document.body;
 
-    // Theme toggle function
-    function toggleTheme() {
-        body.classList.toggle('dark-theme');
+    // Theme management
+    const themes = [
+        { id: 'light', name: 'Light', color: '#f4f4f4' },
+        { id: 'dark', name: 'Dark', color: '#1a1a1a' },
+        { id: 'material', name: 'Material', color: '#f5f5f5' },
+        { id: 'monokai', name: 'Monokai', color: '#272822' },
+        { id: 'solarized', name: 'Solarized', color: '#fdf6e3' }
+    ];
+
+    function setTheme(themeId) {
+        // Remove all theme classes
+        themes.forEach(theme => body.classList.remove(`${theme.id}-theme`));
+        
+        // Apply selected theme
+        body.classList.add(`${themeId}-theme`);
+        
+        // Save to localStorage
+        localStorage.setItem('calculatorTheme', themeId);
+        
+        // Update theme selector display
+        updateThemeSelector(themeId);
     }
+
+    function updateThemeSelector(themeId) {
+        const themeBtn = document.querySelector('.theme-btn');
+        const currentTheme = themes.find(t => t.id === themeId);
+        const themeEmojis = {
+            'light': '☀️',
+            'dark': '🌙',
+            'material': '🎨',
+            'monokai': '💻',
+            'solarized': '🌞'
+        };
+        themeBtn.innerHTML = `
+            <span class="theme-icon" style="background:${currentTheme.color}"></span>
+            ${themeEmojis[currentTheme.id]} ${currentTheme.name}
+            <i class="fas fa-caret-down"></i>
+        `;
+    }
+
+    function initTheme() {
+        const savedTheme = localStorage.getItem('calculatorTheme') || 'light';
+        setTheme(savedTheme);
+    }
+
+    // Initialize theme on load
+    initTheme();
     let memoryValue = null;
     let isResetting = false;
     let justCalculated = false;
@@ -99,5 +142,5 @@ document.addEventListener('DOMContentLoaded', function() {
     window.memoryAdd = memoryAdd;
     window.memoryClear = memoryClear;
     window.memorySubtract = memorySubtract;
-    window.toggleTheme = toggleTheme;
+    window.setTheme = setTheme;
 });
