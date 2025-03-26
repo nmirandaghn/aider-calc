@@ -418,22 +418,21 @@ body.solarized-theme {
   display: flex;
   flex-direction: column;
   width: 300px;
-  gap: 10px;
   margin-left: 20px;
 }
 
 .toggle-history {
-  padding: 10px 15px;
+  padding: 10px 20px;
   background-color: #666;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px 10px 0 0;
   cursor: pointer;
   width: 100%;
   text-align: center;
   height: 50px;
-  margin-bottom: 10px;
-  align-self: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
 }
 
 .toggle-history:hover {
@@ -443,12 +442,13 @@ body.solarized-theme {
 .history-panel {
   width: 100%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: none;
   height: 500px;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .theme-toggle {
