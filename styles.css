@@ -563,7 +563,7 @@ body.nightowl-theme {
   border-radius: 0 0 10px 10px;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  display: none;
+  display: block;
   flex: 1;
   overflow-y: auto;
   box-sizing: border-box;

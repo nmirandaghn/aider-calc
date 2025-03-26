@@ -160,10 +160,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleHistory() {
         const historyPanel = document.querySelector('.history-panel');
         historyPanel.classList.toggle('visible');
-        if (historyPanel.classList.contains('visible')) {
-            updateHistoryDisplay();
-        }
+        updateHistoryDisplay();
     }
+
+    // Initialize history panel as visible
+    document.querySelector('.history-panel').classList.add('visible');
+    updateHistoryDisplay();
 
     function updateHistoryDisplay() {
         const historyEntries = document.getElementById('history-entries');
