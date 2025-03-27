@@ -1,6 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
     const display = document.getElementById('display');
     const body = document.body;
+    
+    // Keyboard support mapping
+    const keyMap = {
+        '0': () => appendNumber(0),
+        '1': () => appendNumber(1),
+        '2': () => appendNumber(2),
+        '3': () => appendNumber(3),
+        '4': () => appendNumber(4),
+        '5': () => appendNumber(5),
+        '6': () => appendNumber(6),
+        '7': () => appendNumber(7),
+        '8': () => appendNumber(8),
+        '9': () => appendNumber(9),
+        '.': () => appendNumber('.'),
+        '+': () => appendOperator('+'),
+        '-': () => appendOperator('-'),
+        '*': () => appendOperator('×'),
+        '/': () => appendOperator('/'),
+        '%': () => appendOperator('%'),
+        'Enter': calculate,
+        '=': calculate,
+        'Escape': clearDisplay,
+        'Backspace': deleteLast,
+        'm': memoryAdd,
+        'M': memoryAdd,
+        'r': memoryRead,
+        'R': memoryRead,
+        'c': memoryClear,
+        'C': memoryClear,
+        's': memorySubtract,
+        'S': memorySubtract,
+        'h': toggleHistory,
+        'H': toggleHistory
+    };
+
+    // Add keyboard event listener
+    document.addEventListener('keydown', (e) => {
+        if (keyMap[e.key]) {
+            e.preventDefault();
+            keyMap[e.key]();
+        }
+    });
 
     // Theme management
     const themes = [

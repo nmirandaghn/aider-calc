@@ -112,8 +112,10 @@ button {
   }
 }
 
-button:hover {
+button:hover, button:focus {
   background-color: #ddd;
+  outline: 2px solid #ff9500;
+  outline-offset: 2px;
 }
 
 .operator {
