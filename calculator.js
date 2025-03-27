@@ -119,8 +119,10 @@ document.addEventListener('DOMContentLoaded', function() {
             currentValue = inputValue;
         } else if (pendingOperator) {
             // Calculate intermediate result
-            currentValue = calculateResult(currentValue, inputValue, pendingOperator);
-            display.value = currentValue;
+            const result = calculateResult(currentValue, inputValue, pendingOperator);
+            addToHistory(`${currentValue} ${pendingOperator} ${inputValue}`, result);
+            currentValue = result;
+            display.value = result;
         }
 
         pendingOperator = operator;
@@ -172,6 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
             pendingOperator = null;
             justCalculated = true;
         } else if (currentValue !== null) {
+            // If no operator but we have a current value, show it
             display.value = currentValue;
         }
     }
