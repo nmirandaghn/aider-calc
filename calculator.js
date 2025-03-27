@@ -187,5 +187,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.toggleHistory = toggleHistory;
+    function toggleSign() {
+        if (display.value !== '' && display.value !== 'Error') {
+            if (display.value.startsWith('-')) {
+                display.value = display.value.substring(1);
+            } else {
+                display.value = '-' + display.value;
+            }
+        }
+    }
+
     window.clearHistory = clearHistory;
+    window.toggleSign = toggleSign;
 });
