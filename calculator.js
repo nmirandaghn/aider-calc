@@ -95,22 +95,60 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function appendNumber(number) {
-        if (justCalculated || display.value === 'Error') {
+        if (display.value === 'Error') {
+            display.value = '';
+        }
+        
+        if (justCalculated || shouldClearDisplay || display.value === '0') {
             display.value = number;
             justCalculated = false;
+            shouldClearDisplay = false;
         } else {
             display.value += number;
         }
     }
 
+    let currentValue = null;
+    let pendingOperator = null;
+    let shouldClearDisplay = false;
+
     function appendOperator(operator) {
-        if (display.value !== '') {
-            display.value += operator;
+        const inputValue = parseFloat(display.value);
+        
+        if (currentValue === null) {
+            currentValue = inputValue;
+        } else if (pendingOperator) {
+            // Calculate intermediate result
+            currentValue = calculateResult(currentValue, inputValue, pendingOperator);
+            display.value = currentValue;
+        }
+
+        pendingOperator = operator;
+        shouldClearDisplay = true;
+    }
+
+    function calculateResult(firstOperand, secondOperand, operator) {
+        switch(operator) {
+            case '+':
+                return firstOperand + secondOperand;
+            case '-':
+                return firstOperand - secondOperand;
+            case '×':
+                return firstOperand * secondOperand;
+            case '/':
+                return firstOperand / secondOperand;
+            case '%':
+                return firstOperand % secondOperand;
+            default:
+                return secondOperand;
         }
     }
 
     function clearDisplay() {
-        display.value = '';
+        display.value = '0';
+        currentValue = null;
+        pendingOperator = null;
+        shouldClearDisplay = false;
     }
 
     function deleteLast() {
@@ -123,17 +161,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function calculate() {
-        try {
-            // Replace percentage symbol with /100 and handle multiplication
-            let expression = display.value.replace(/×/g, '*');
-            expression = expression.replace(/([\d.]+)%/g, '($1/100)');
+        const inputValue = parseFloat(display.value);
         
-            const result = eval(expression);
-            display.value = result.toString();
+        if (pendingOperator && currentValue !== null) {
+            const result = calculateResult(currentValue, inputValue, pendingOperator);
+            display.value = result;
+            addToHistory(`${currentValue} ${pendingOperator} ${inputValue}`, result);
+            
+            currentValue = result;
+            pendingOperator = null;
             justCalculated = true;
-            addToHistory(expression.replace(/\*/g, '×'), result); // Show × instead of * for multiplication
-        } catch (error) {
-            display.value = 'Error';
+        } else if (currentValue !== null) {
+            display.value = currentValue;
         }
     }
 
