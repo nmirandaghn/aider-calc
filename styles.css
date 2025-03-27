@@ -531,6 +531,11 @@ body.holographic-theme {
   border-radius: 4px;
   cursor: pointer;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
 }
 
 .clear-history:hover {
