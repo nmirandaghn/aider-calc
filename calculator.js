@@ -1,9 +1,38 @@
+// Constants
+const ERROR_MSG = 'Error';
+const DEFAULT_THEME = 'light';
+
+// DOM Elements
+const display = document.getElementById('display');
+const body = document.body;
+
+// Calculator State
+let memoryValue = null;
+let calculationHistory = [];
+let currentValue = null;
+let pendingOperator = null;
+let shouldClearDisplay = false;
+let justCalculated = false;
+
+/**
+ * Initializes the calculator when DOM is loaded
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    const display = document.getElementById('display');
-    const body = document.body;
     
-    // Keyboard support mapping
-    const keyMap = {
+    // Initialize calculator
+    initTheme();
+    initHistoryPanel();
+});
+
+// ======================
+// Keyboard Support
+// ======================
+
+/**
+ * Keyboard event mappings
+ * @type {Object.<string, function>}
+ */
+const keyMap = {
         '0': () => appendNumber(0),
         '1': () => appendNumber(1),
         '2': () => appendNumber(2),
@@ -44,8 +73,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Theme management
-    const themes = [
+// ======================
+// Theme Management
+// ======================
+
+/**
+ * Available calculator themes
+ * @type {Array.<{id: string, name: string, color: string}>}
+ */
+const themes = [
         { id: 'light', name: 'Light', color: '#f4f4f4' },
         { id: 'dark', name: 'Dark', color: '#1a1a1a' },
         { id: 'material', name: 'Material', color: '#f5f5f5' },
@@ -55,7 +91,11 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'holographic', name: 'Holographic', color: '#0a0a1a' }
     ];
 
-    function setTheme(themeId) {
+/**
+ * Sets the active theme
+ * @param {string} themeId - ID of the theme to activate
+ */
+function setTheme(themeId) {
         // Remove all theme classes
         themes.forEach(theme => body.classList.remove(`${theme.id}-theme`));
         
@@ -69,7 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
         updateThemeSelector(themeId);
     }
 
-    function updateThemeSelector(themeId) {
+/**
+ * Updates the theme selector UI
+ * @param {string} themeId - ID of the current theme
+ */
+function updateThemeSelector(themeId) {
         const themeBtn = document.querySelector('.theme-btn');
         const currentTheme = themes.find(t => t.id === themeId);
         const themeEmojis = {
@@ -88,35 +132,44 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    function initTheme() {
+/**
+ * Initializes the theme from localStorage or defaults
+ */
+function initTheme() {
         const savedTheme = localStorage.getItem('calculatorTheme') || 'light';
         setTheme(savedTheme);
     }
 
     // Initialize theme on load
     initTheme();
-    let memoryValue = null;
-    let calculationHistory = [];
-    let isResetting = false;
-    let justCalculated = false;
 
-    // Reset calculator completely
-    function resetCalculator() {
+// ======================
+// Memory Operations
+// ======================
+
+/**
+ * Resets calculator to initial state
+ */
+function resetCalculator() {
         display.value = '';
         memoryValue = null;
         isResetting = true;
     }
 
-    // Store current value in memory
-    function memoryAdd() {
+/**
+ * Adds current display value to memory
+ */
+function memoryAdd() {
         const currentValue = parseFloat(display.value);
         if (!isNaN(currentValue)) {
             memoryValue = (memoryValue || 0) + currentValue;
         }
     }
 
-    // Subtract from memory
-    function memorySubtract() {
+/**
+ * Subtracts current display value from memory
+ */
+function memorySubtract() {
         const currentValue = parseFloat(display.value);
         if (!isNaN(currentValue)) {
             memoryValue = (memoryValue || 0) - currentValue;
@@ -124,15 +177,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // Retrieve memory value
-    function memoryRead() {
+/**
+ * Recalls memory value to display
+ */
+function memoryRead() {
         if (memoryValue !== null) {
             display.value = memoryValue.toString();
         }
     }
 
-    // Clear memory
-    function memoryClear() {
+/**
+ * Clears the memory value
+ */
+function memoryClear() {
         memoryValue = null;
     }
 
@@ -150,9 +207,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    let currentValue = null;
-    let pendingOperator = null;
-    let shouldClearDisplay = false;
 
     function appendOperator(operator) {
         const inputValue = parseFloat(display.value);
@@ -283,4 +337,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.clearHistory = clearHistory;
     window.toggleSign = toggleSign;
-});
