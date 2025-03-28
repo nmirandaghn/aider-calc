@@ -237,6 +237,87 @@ body.holographic-theme {
   color: #00f7ff;
 }
 
+/* Cyberpunk Theme */
+body.cyberpunk-theme {
+  background-color: #1a0033;
+  color: #ff2a6d;
+}
+
+.cyberpunk-theme .calculator {
+  background-color: rgba(10, 0, 20, 0.9);
+  box-shadow: 0 0 20px rgba(255, 42, 109, 0.5);
+  border: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.cyberpunk-theme .display {
+  background-color: rgba(20, 0, 40, 0.8);
+  border: 1px solid rgba(255, 42, 109, 0.5);
+  color: #ff2a6d;
+  text-shadow: 0 0 5px rgba(255, 42, 109, 0.7);
+}
+
+.cyberpunk-theme button {
+  background-color: rgba(30, 0, 60, 0.7);
+  color: #ff2a6d;
+  border: 1px solid rgba(255, 42, 109, 0.3);
+  text-shadow: 0 0 5px rgba(255, 42, 109, 0.5);
+}
+
+.cyberpunk-theme button:hover {
+  background-color: rgba(50, 0, 100, 0.7);
+  box-shadow: 0 0 10px rgba(255, 42, 109, 0.3);
+}
+
+.cyberpunk-theme .operator {
+  background-color: rgba(255, 42, 109, 0.7);
+  color: #1a0033;
+  text-shadow: none;
+}
+
+.cyberpunk-theme .operator:hover {
+  background-color: rgba(255, 80, 150, 0.7);
+}
+
+.cyberpunk-theme .memory {
+  background-color: rgba(0, 200, 255, 0.7);
+  color: #1a0033;
+  text-shadow: none;
+}
+
+.cyberpunk-theme .memory:hover {
+  background-color: rgba(0, 230, 255, 0.7);
+}
+
+.cyberpunk-theme .calculator-title {
+  color: #ff2a6d;
+  text-shadow: 0 0 10px rgba(255, 42, 109, 0.7);
+}
+
+.cyberpunk-theme .history-panel {
+  background-color: rgba(10, 0, 20, 0.7);
+  color: #ff2a6d;
+  border: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.cyberpunk-theme .history-operation {
+  color: #ff2a6d;
+  text-shadow: 0 0 5px rgba(255, 42, 109, 0.5);
+}
+
+.cyberpunk-theme .history-result {
+  color: #ff80c0;
+}
+
+.cyberpunk-theme .clear-history {
+  background-color: rgba(20, 0, 40, 0.8);
+  color: #ff2a6d;
+  border: 1px solid rgba(255, 42, 109, 0.3);
+}
+
+.cyberpunk-theme .clear-history:hover {
+  background-color: rgba(30, 0, 60, 0.8);
+}
+
 .holographic-theme .calculator {
   background-color: rgba(0, 10, 20, 0.7);
   box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);

@@ -58,15 +58,39 @@
                   <span class="theme-icon" style="background: #0a0a1a"></span>
                   👽 Holographic
                 </div>
+                <div class="theme-option" onclick="setTheme('cyberpunk')">
+                  <span class="theme-icon" style="background: #ff2a6d"></span>
+                  🤖 Cyberpunk
+                </div>
               </div>
             </div>
           </div>
           <input type="text" class="display" id="display" disabled />
           <div class="memory-buttons">
-            <button onclick="memoryClear()" class="memory" title="Memory Clear (C)">MC</button>
-            <button onclick="memoryRead()" class="memory" title="Memory Recall (R)">MR</button>
-            <button onclick="memoryAdd()" class="memory" title="Memory Add (M)">M+</button>
-            <button onclick="memorySubtract()" class="memory" title="Memory Subtract (S)">M-</button>
+            <button
+              onclick="memoryClear()"
+              class="memory"
+              title="Memory Clear (C)"
+            >
+              MC
+            </button>
+            <button
+              onclick="memoryRead()"
+              class="memory"
+              title="Memory Recall (R)"
+            >
+              MR
+            </button>
+            <button onclick="memoryAdd()" class="memory" title="Memory Add (M)">
+              M+
+            </button>
+            <button
+              onclick="memorySubtract()"
+              class="memory"
+              title="Memory Subtract (S)"
+            >
+              M-
+            </button>
           </div>
           <div class="buttons">
             <button onclick="clearDisplay()">C</button>
@@ -101,7 +125,11 @@
         <div class="history-panel">
           <div class="history-header">
             <h3 class="history-title">Calculation History</h3>
-            <button class="clear-history" onclick="clearHistory()" title="Clear history">
+            <button
+              class="clear-history"
+              onclick="clearHistory()"
+              title="Clear history"
+            >
               <i class="fas fa-trash-alt"></i>
             </button>
           </div>
