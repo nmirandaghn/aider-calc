@@ -23,6 +23,28 @@ document.addEventListener("DOMContentLoaded", function () {
   initHistoryPanel();
 });
 
+/**
+ * Initializes the history panel with saved calculations if any
+ */
+function initHistoryPanel() {
+  // Load saved history from localStorage if available
+  const savedHistory = localStorage.getItem('calculatorHistory');
+  if (savedHistory) {
+    try {
+      calculationHistory = JSON.parse(savedHistory);
+      updateHistoryDisplay();
+    } catch (e) {
+      console.error('Failed to parse saved history', e);
+    }
+  }
+  
+  // Ensure the history panel is properly initialized
+  const historyPanel = document.querySelector('.history-panel');
+  if (!historyPanel.classList.contains('visible')) {
+    historyPanel.classList.remove('visible');
+  }
+}
+
 // ======================
 // Keyboard Support
 // ======================
@@ -289,10 +311,14 @@ window.memoryClear = memoryClear;
 window.memorySubtract = memorySubtract;
 function addToHistory(expression, result) {
   calculationHistory.push({
-    operation: expression, // Store the full operation
+    operation: expression,
     result: result,
     timestamp: new Date().toLocaleTimeString(),
   });
+  
+  // Save to localStorage
+  localStorage.setItem('calculatorHistory', JSON.stringify(calculationHistory));
+  
   if (document.querySelector(".history-panel").classList.contains("visible")) {
     updateHistoryDisplay();
   }
@@ -338,6 +364,12 @@ function toggleSign() {
       display.value = "-" + display.value;
     }
   }
+}
+
+function clearHistory() {
+  calculationHistory = [];
+  localStorage.removeItem('calculatorHistory');
+  updateHistoryDisplay();
 }
 
 window.clearHistory = clearHistory;
