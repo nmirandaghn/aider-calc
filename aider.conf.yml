@@ -1,0 +1,4 @@
+auto-commits: false
+auto-lint: true
+dark-mode: true
+model: openrouter/deepseek/deepseek-chat-v3-0324
