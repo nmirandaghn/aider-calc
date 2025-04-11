@@ -14,6 +14,9 @@ let pendingOperator = null;
 let shouldClearDisplay = false;
 let justCalculated = false;
 
+// User Management
+let currentUser = null;
+
 /**
  * Initializes the calculator when DOM is loaded
  */
@@ -21,6 +24,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // Initialize calculator
   initTheme();
   initHistoryPanel();
+
+  // Check if user is already logged in
+  const savedUser = localStorage.getItem("currentUser");
+  if (savedUser) {
+    currentUser = JSON.parse(savedUser);
+    showCalculator();
+  }
 });
 
 /**
@@ -28,20 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 function initHistoryPanel() {
   // Load saved history from localStorage if available
-  const savedHistory = localStorage.getItem('calculatorHistory');
-  if (savedHistory) {
-    try {
-      calculationHistory = JSON.parse(savedHistory);
-      updateHistoryDisplay();
-    } catch (e) {
-      console.error('Failed to parse saved history', e);
-    }
+  if (currentUser) {
+    loadUserHistory();
   }
-  
+
   // Ensure the history panel is properly initialized
-  const historyPanel = document.querySelector('.history-panel');
-  if (!historyPanel.classList.contains('visible')) {
-    historyPanel.classList.remove('visible');
+  const historyPanel = document.querySelector(".history-panel");
+  if (!historyPanel.classList.contains("visible")) {
+    historyPanel.classList.remove("visible");
   }
 }
 
@@ -88,9 +92,23 @@ const keyMap = {
 
 // Add keyboard event listener
 document.addEventListener("keydown", (e) => {
-  if (keyMap[e.key]) {
+  // Don't intercept keyboard events when focus is on input fields
+  if (e.target.tagName === "INPUT") {
+    return;
+  }
+
+  // Convert key to lowercase for case-insensitive comparison
+  const key = e.key.toLowerCase();
+  const normalizedKeyMap = {};
+
+  // Create case-insensitive key mappings
+  for (let k in keyMap) {
+    normalizedKeyMap[k.toLowerCase()] = keyMap[k];
+  }
+
+  if (normalizedKeyMap[key]) {
     e.preventDefault();
-    keyMap[e.key]();
+    normalizedKeyMap[key]();
   }
 });
 
@@ -255,6 +273,7 @@ function calculateResult(firstOperand, secondOperand, operator) {
     case "-":
       return firstOperand - secondOperand;
     case "×":
+    case "*":  // Handle both × and * operators
       return firstOperand * secondOperand;
     case "/":
       return firstOperand / secondOperand;
@@ -310,15 +329,18 @@ window.memoryAdd = memoryAdd;
 window.memoryClear = memoryClear;
 window.memorySubtract = memorySubtract;
 function addToHistory(expression, result) {
+  if (!currentUser) return;
+
   calculationHistory.push({
     operation: expression,
     result: result,
     timestamp: new Date().toLocaleTimeString(),
   });
-  
-  // Save to localStorage
-  localStorage.setItem('calculatorHistory', JSON.stringify(calculationHistory));
-  
+
+  // Save to user-specific storage
+  const key = `calculatorHistory_${currentUser.email}`;
+  localStorage.setItem(key, JSON.stringify(calculationHistory));
+
   if (document.querySelector(".history-panel").classList.contains("visible")) {
     updateHistoryDisplay();
   }
@@ -352,6 +374,10 @@ function updateHistoryDisplay() {
 window.setTheme = setTheme;
 function clearHistory() {
   calculationHistory = [];
+  if (currentUser) {
+    const key = `calculatorHistory_${currentUser.email}`;
+    localStorage.removeItem(key);
+  }
   updateHistoryDisplay();
 }
 
@@ -366,11 +392,107 @@ function toggleSign() {
   }
 }
 
-function clearHistory() {
-  calculationHistory = [];
-  localStorage.removeItem('calculatorHistory');
-  updateHistoryDisplay();
-}
-
 window.clearHistory = clearHistory;
 window.toggleSign = toggleSign;
+
+// User Authentication Functions
+function login() {
+  const email = document.getElementById("loginEmail").value;
+  const password = document.getElementById("loginPassword").value;
+
+  // Get stored users
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+  const user = users.find((u) => u.email === email && u.password === password);
+
+  if (user) {
+    currentUser = { email: user.email };
+    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    showCalculator();
+  } else {
+    alert("Invalid email or password");
+  }
+}
+
+function signup() {
+  const email = document.getElementById("signupEmail").value;
+  const password = document.getElementById("signupPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match");
+    return;
+  }
+
+  // Get stored users
+  const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+  // Check if user already exists
+  if (users.some((u) => u.email === email)) {
+    alert("User already exists");
+    return;
+  }
+
+  // Add new user
+  users.push({ email, password });
+  localStorage.setItem("users", JSON.stringify(users));
+
+  // Auto login after signup
+  currentUser = { email };
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  showCalculator();
+}
+
+function logout() {
+  currentUser = null;
+  localStorage.removeItem("currentUser");
+  showLoginForm();
+}
+
+function showCalculator() {
+  document.getElementById("authContainer").style.display = "none";
+  document.getElementById("appContainer").style.display = "flex";
+
+  // Add logout button to calculator header
+  const calculatorHeader = document.querySelector(".calculator-header");
+  if (!document.querySelector(".logout-btn")) {
+    const logoutBtn = document.createElement("button");
+    logoutBtn.className = "logout-btn";
+    logoutBtn.innerHTML = '<i class="fas fa-sign-out-alt"></i> Logout';
+    logoutBtn.onclick = logout;
+    calculatorHeader.appendChild(logoutBtn);
+  }
+
+  // Load user-specific data
+  loadUserHistory();
+}
+
+function showLoginForm() {
+  document.getElementById("authContainer").style.display = "flex";
+  document.getElementById("appContainer").style.display = "none";
+  document.getElementById("loginForm").style.display = "block";
+  document.getElementById("signupForm").style.display = "none";
+}
+
+function toggleAuthForm() {
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+  loginForm.style.display =
+    loginForm.style.display === "none" ? "block" : "none";
+  signupForm.style.display =
+    signupForm.style.display === "none" ? "block" : "none";
+}
+
+function loadUserHistory() {
+  if (!currentUser) return;
+
+  const key = `calculatorHistory_${currentUser.email}`;
+  const savedHistory = localStorage.getItem(key);
+  if (savedHistory) {
+    try {
+      calculationHistory = JSON.parse(savedHistory);
+      updateHistoryDisplay();
+    } catch (e) {
+      console.error("Failed to parse saved history", e);
+    }
+  }
+}

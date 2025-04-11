@@ -112,7 +112,8 @@ button {
   }
 }
 
-button:hover, button:focus {
+button:hover,
+button:focus {
   background-color: #ddd;
   outline: 2px solid #ff9500;
   outline-offset: 2px;
@@ -805,4 +806,127 @@ body.cyberpunk-theme {
     padding: 10px 20px;
     font-size: 16px;
   }
+}
+
+/* Auth Styles */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.auth-form {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-form h2 {
+  margin: 0 0 20px;
+  text-align: center;
+  color: #333;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff9500;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.auth-form button:hover {
+  background-color: #e68a00;
+}
+
+.auth-form p {
+  text-align: center;
+  margin: 0;
+}
+
+.auth-form a {
+  color: #ff9500;
+  text-decoration: none;
+}
+
+.auth-form a:hover {
+  text-decoration: underline;
+}
+
+/* Theme-specific auth styles */
+.dark-theme .auth-container {
+  background-color: #1a1a1a;
+}
+
+.dark-theme .auth-form {
+  background-color: #2d2d2d;
+}
+
+.dark-theme .auth-form h2,
+.dark-theme .auth-form p {
+  color: #fff;
+}
+
+.dark-theme .auth-form input {
+  background-color: #3d3d3d;
+  border-color: #4d4d4d;
+  color: #fff;
+}
+
+.logout-btn {
+  background-color: #ff9500;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+.logout-btn:hover {
+  background-color: #e68a00;
+}
+
+.logout-btn i {
+  font-size: 16px;
+}
+
+/* Theme-specific logout button styles */
+.dark-theme .logout-btn {
+  background-color: #444;
+}
+
+.dark-theme .logout-btn:hover {
+  background-color: #555;
+}
+
+.material-theme .logout-btn {
+  background-color: #1976d2;
+}
+
+.material-theme .logout-btn:hover {
+  background-color: #1565c0;
 }
